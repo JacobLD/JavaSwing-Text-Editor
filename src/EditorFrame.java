@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class EditorFrame extends JFrame {
     private final static String TITLE = "Swing Text Editor";
@@ -112,7 +113,7 @@ public class EditorFrame extends JFrame {
         });
     }
 
-    // UNDER CONSTRUCTION
+    // UNDER CONSTRUCTION - WORKS
     private void save(){
         int returnVal = chooser.showSaveDialog(this);
 
@@ -121,7 +122,10 @@ public class EditorFrame extends JFrame {
             FileWriter writer;
             try{
                 writer = new FileWriter(saveFile);
-                writer.write(textArea.getText());
+                String text = textArea.getText();
+                writer.write(text);
+                System.out.println("Writing - " + text);
+                writer.close();
             } catch (IOException e){
                 // we know this file exists because we just made it
             }
@@ -130,9 +134,29 @@ public class EditorFrame extends JFrame {
         }
     }
 
-    // NOT IMPLEMENTED
+    // UNDER CONSTRUCTION
     private void open(){
+        int returnVal = chooser.showOpenDialog(this);
 
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            File openFile = chooser.getSelectedFile();
+            Scanner scanner;
+            textArea.setText("");
+            try{
+                scanner = new Scanner(openFile);
+                while (scanner.hasNextLine()){
+                    textArea.append(scanner.nextLine());
+                    if(scanner.hasNextLine()){
+                        textArea.append("\n");
+                    }
+                }
+                scanner.close();
+            } catch (IOException e){
+                // we know this file exists because we just made it
+            }
+        } else {
+            System.out.println("Open cancelled by user.");
+        }
     }
 
     // NOT IMPLEMENTED

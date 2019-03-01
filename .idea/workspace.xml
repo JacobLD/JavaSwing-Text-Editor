@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3c57f18d-e263-4c30-b2d2-e4707c98bf07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EditorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EditorFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SaveFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveFrame.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,27 +27,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/EditorFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="129" selection-start-line="129" selection-end-line="129" />
+            <state relative-caret-position="260">
+              <caret line="150" column="21" lean-forward="true" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#EditorFrame#0;class#EditorFrame#0" />
                 <element signature="method#setupComponents#0;class#EditorFrame#0" />
                 <element signature="method#setupButtons#0;class#EditorFrame#0" />
-                <element signature="method#open#0;class#EditorFrame#0" />
+                <element signature="e#3312#3313#0" expanded="true" />
+                <element signature="e#3350#3351#0" expanded="true" />
+                <element signature="e#3503#3504#0" expanded="true" />
+                <element signature="e#3542#3543#0" expanded="true" />
+                <element signature="method#save#0;class#EditorFrame#0" />
                 <element signature="method#print#0;class#EditorFrame#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SaveFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,7 +101,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551466023106" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551472431751" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -176,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551466117826</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="The idea of a save dialog was flawed. Java has a built in function for this.&#10;&#10;Removed the SaveFrame in exchange for the built in java dialog box.">
+      <created>1551471377024</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1551471377024</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -215,7 +213,8 @@
     <MESSAGE value="Created a scrollable text field with 'open' and 'save' buttons." />
     <MESSAGE value="Formatting on text field." />
     <MESSAGE value="Attempt at adding a save frame that appears when you press the save button.&#10;&#10;Currently the file chooser does not work." />
-    <option name="LAST_COMMIT_MESSAGE" value="Attempt at adding a save frame that appears when you press the save button.&#10;&#10;Currently the file chooser does not work." />
+    <MESSAGE value="The idea of a save dialog was flawed. Java has a built in function for this.&#10;&#10;Removed the SaveFrame in exchange for the built in java dialog box." />
+    <option name="LAST_COMMIT_MESSAGE" value="The idea of a save dialog was flawed. Java has a built in function for this.&#10;&#10;Removed the SaveFrame in exchange for the built in java dialog box." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ToolbarPanel.java" />
@@ -239,14 +238,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EditorFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
+        <state relative-caret-position="260">
+          <caret line="150" column="21" lean-forward="true" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#EditorFrame#0;class#EditorFrame#0" />
             <element signature="method#setupComponents#0;class#EditorFrame#0" />
             <element signature="method#setupButtons#0;class#EditorFrame#0" />
-            <element signature="method#open#0;class#EditorFrame#0" />
+            <element signature="e#3312#3313#0" expanded="true" />
+            <element signature="e#3350#3351#0" expanded="true" />
+            <element signature="e#3503#3504#0" expanded="true" />
+            <element signature="e#3542#3543#0" expanded="true" />
+            <element signature="method#save#0;class#EditorFrame#0" />
             <element signature="method#print#0;class#EditorFrame#0" />
           </folding>
         </state>
