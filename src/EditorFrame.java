@@ -3,6 +3,10 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.io.IOException;
 
 public class EditorFrame extends JFrame {
     private final static String TITLE = "Swing Text Editor";
@@ -13,6 +17,7 @@ public class EditorFrame extends JFrame {
     private final JButton saveButton = new JButton("Save");
     private final JButton printButton = new JButton("Print");
     private final JTextArea textArea = new JTextArea();
+    private final JFileChooser chooser = new JFileChooser();
 
     public EditorFrame(){
         super(TITLE);
@@ -31,6 +36,7 @@ public class EditorFrame extends JFrame {
         setupComponents(mainPanel);
         // add the formatted panel to our content pane
         getContentPane().add(mainPanel);
+        setVisible(true);
     }
 
     private void setupComponents(JPanel panel){
@@ -108,8 +114,20 @@ public class EditorFrame extends JFrame {
 
     // UNDER CONSTRUCTION
     private void save(){
-        SaveFrame sf = new SaveFrame(textArea);
-        sf.setVisible(true);
+        int returnVal = chooser.showSaveDialog(this);
+
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            File saveFile = chooser.getSelectedFile();
+            FileWriter writer;
+            try{
+                writer = new FileWriter(saveFile);
+                writer.write(textArea.getText());
+            } catch (IOException e){
+                // we know this file exists because we just made it
+            }
+        } else {
+            System.out.println("Save cancelled by user.");
+        }
     }
 
     // NOT IMPLEMENTED
