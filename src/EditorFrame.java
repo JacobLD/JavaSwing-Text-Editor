@@ -1,15 +1,18 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EditorFrame extends JFrame {
     private final static String TITLE = "Swing Text Editor";
     private final static int INITIAL_SIZE = 550;
     private final static float FONT_SIZE = 20f;
     private final static int TAB_SIZE = 5;
-    private JButton openButton = new JButton("Open");
-    private JButton saveButton = new JButton("Save");
-    private JButton printButton = new JButton("Print");
+    private final JButton openButton = new JButton("Open");
+    private final JButton saveButton = new JButton("Save");
+    private final JButton printButton = new JButton("Print");
+    private final JTextArea textArea = new JTextArea();
 
     public EditorFrame(){
         super(TITLE);
@@ -20,19 +23,22 @@ public class EditorFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(INITIAL_SIZE, INITIAL_SIZE);
 
-        Container mainContainer = this.getContentPane();
+        // Create our main panel
         JPanel mainPanel = new JPanel(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        setupComponents(mainPanel, constraints);
-        mainContainer.add(mainPanel);
+        // Sets our action listeners to reference our action methods
+        setupButtons();
+        // format the panel
+        setupComponents(mainPanel);
+        // add the formatted panel to our content pane
+        getContentPane().add(mainPanel);
     }
 
-    private void setupComponents(JPanel panel, GridBagConstraints c){
+    private void setupComponents(JPanel panel){
         /*// test field
         JComboBox fontComboBox = new JComboBox(new String[]{"1", "2", "3"});
         // end test*/
 
-        JTextArea textArea = new JTextArea();
+        GridBagConstraints c = new GridBagConstraints();
         // set font size using the default font
         textArea.setFont(textArea.getFont().deriveFont(FONT_SIZE));
         // set a small border to push the text away from the sides
@@ -74,5 +80,45 @@ public class EditorFrame extends JFrame {
         c.gridwidth = 5;
         c.weighty = 1;
         panel.add(textField, c);
+    }
+
+    private void setupButtons(){
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //System.out.println("Save.");
+                save();
+            }
+        });
+
+        openButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                open();
+            }
+        });
+
+        printButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                print();
+            }
+        });
+    }
+
+    // UNDER CONSTRUCTION
+    private void save(){
+        SaveFrame sf = new SaveFrame(textArea);
+        sf.setVisible(true);
+    }
+
+    // NOT IMPLEMENTED
+    private void open(){
+
+    }
+
+    // NOT IMPLEMENTED
+    private void print(){
+
     }
 }
