@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,7 @@ public class EditorFrame extends JFrame {
     private final JButton saveButton = new JButton("Save");
     private final JButton printButton = new JButton("Print");
     private final JTextArea textArea = new JTextArea();
-    private final JFileChooser chooser = new JFileChooser();
+    //private final JFileChooser chooser = new JFileChooser();
 
     public EditorFrame(){
         super(TITLE);
@@ -113,8 +114,9 @@ public class EditorFrame extends JFrame {
         });
     }
 
-    // UNDER CONSTRUCTION - WORKS
+    // WORKS
     private void save(){
+        JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showSaveDialog(this);
 
         if(returnVal == JFileChooser.APPROVE_OPTION){
@@ -134,8 +136,9 @@ public class EditorFrame extends JFrame {
         }
     }
 
-    // UNDER CONSTRUCTION
+    // WORKS
     private void open(){
+        JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(this);
 
         if(returnVal == JFileChooser.APPROVE_OPTION){
