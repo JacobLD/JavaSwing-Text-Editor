@@ -26,19 +26,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/EditorFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="140" column="50" selection-start-line="140" selection-start-column="50" selection-end-line="140" selection-end-column="50" />
+            <state relative-caret-position="276">
+              <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#EditorFrame#0;class#EditorFrame#0" />
-                <element signature="method#initFrame#0;class#EditorFrame#0" />
-                <element signature="method#setupComponents#0;class#EditorFrame#0" />
-                <element signature="method#setupButtons#0;class#EditorFrame#0" />
-                <element signature="e#3312#3313#0" expanded="true" />
-                <element signature="e#3350#3351#0" expanded="true" />
-                <element signature="e#3503#3504#0" expanded="true" />
-                <element signature="e#3542#3543#0" expanded="true" />
+                <element signature="method#addFontSizePanel#0;class#EditorFrame#0" />
+                <element signature="method#setupListeners#0;class#EditorFrame#0" />
+                <element signature="e#4443#4444#0" expanded="true" />
+                <element signature="e#4481#4482#0" expanded="true" />
                 <element signature="method#save#0;class#EditorFrame#0" />
+                <element signature="method#open#0;class#EditorFrame#0" />
                 <element signature="method#print#0;class#EditorFrame#0" />
               </folding>
             </state>
@@ -80,6 +78,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,11 +96,10 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551472677652" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551472683078" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -181,14 +179,21 @@
       <option name="project" value="LOCAL" />
       <updated>1551472480065</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Moved chooser down to method level so I can add a filter to the open method later.">
+      <created>1551472707682</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1551472707682</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.4107413" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21860817" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -197,7 +202,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3289689" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25531915" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -222,11 +227,13 @@
     <MESSAGE value="Attempt at adding a save frame that appears when you press the save button.&#10;&#10;Currently the file chooser does not work." />
     <MESSAGE value="The idea of a save dialog was flawed. Java has a built in function for this.&#10;&#10;Removed the SaveFrame in exchange for the built in java dialog box." />
     <MESSAGE value="Both save and open functions are working." />
-    <option name="LAST_COMMIT_MESSAGE" value="Both save and open functions are working." />
+    <MESSAGE value="Moved chooser down to method level so I can add a filter to the open method later." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved chooser down to method level so I can add a filter to the open method later." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ToolbarPanel.java" />
     <entry file="file://$PROJECT_DIR$/src/EditorLayout.java" />
+    <entry file="file://$PROJECT_DIR$/src/SaveFrame.java" />
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -234,31 +241,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SaveFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/EditorFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="140" column="50" selection-start-line="140" selection-start-column="50" selection-end-line="140" selection-end-column="50" />
+        <state relative-caret-position="276">
+          <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#EditorFrame#0;class#EditorFrame#0" />
-            <element signature="method#initFrame#0;class#EditorFrame#0" />
-            <element signature="method#setupComponents#0;class#EditorFrame#0" />
-            <element signature="method#setupButtons#0;class#EditorFrame#0" />
-            <element signature="e#3312#3313#0" expanded="true" />
-            <element signature="e#3350#3351#0" expanded="true" />
-            <element signature="e#3503#3504#0" expanded="true" />
-            <element signature="e#3542#3543#0" expanded="true" />
+            <element signature="method#addFontSizePanel#0;class#EditorFrame#0" />
+            <element signature="method#setupListeners#0;class#EditorFrame#0" />
+            <element signature="e#4443#4444#0" expanded="true" />
+            <element signature="e#4481#4482#0" expanded="true" />
             <element signature="method#save#0;class#EditorFrame#0" />
+            <element signature="method#open#0;class#EditorFrame#0" />
             <element signature="method#print#0;class#EditorFrame#0" />
           </folding>
         </state>

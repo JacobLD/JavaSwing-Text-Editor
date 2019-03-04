@@ -1,25 +1,36 @@
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class EditorFrame extends JFrame {
+    // Title stored in the top bar
     private final static String TITLE = "Swing Text Editor";
+    // The initial square size of the editor window
     private final static int INITIAL_SIZE = 550;
-    private final static float FONT_SIZE = 20f;
+
+    // # of spaces used for tabs in editor - arbitrary
     private final static int TAB_SIZE = 5;
+    // Initial font size
+    private final static float FONT_SIZE = 20f;
+    // How much do the font size choices increment from min to max
+    private final static float TEXT_INCREMENT = 0.5f;
+    // Minimum text size that may be use in editor
+    private final static int MIN_TEXT_SIZE = 5;
+    // Maximum text size that may be use in editor
+    private final static int MAX_TEXT_SIZE = 30;
+
+    private final JPanel mainPanel = new JPanel(new GridBagLayout());
     private final JButton openButton = new JButton("Open");
     private final JButton saveButton = new JButton("Save");
     private final JButton printButton = new JButton("Print");
+    private final JComboBox<Float> textSizeBox = new JComboBox<>();
     private final JTextArea textArea = new JTextArea();
-    //private final JFileChooser chooser = new JFileChooser();
+
 
     public EditorFrame(){
         super(TITLE);
@@ -30,32 +41,31 @@ public class EditorFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(INITIAL_SIZE, INITIAL_SIZE);
 
-        // Create our main panel
-        JPanel mainPanel = new JPanel(new GridBagLayout());
         // Sets our action listeners to reference our action methods
-        setupButtons();
+        setupListeners();
+
         // format the panel
-        setupComponents(mainPanel);
+        setupComponents();
+
         // add the formatted panel to our content pane
         getContentPane().add(mainPanel);
         setVisible(true);
     }
 
-    private void setupComponents(JPanel panel){
-        /*// test field
-        JComboBox fontComboBox = new JComboBox(new String[]{"1", "2", "3"});
-        // end test*/
+    private void setupComponents(){
 
         GridBagConstraints c = new GridBagConstraints();
-        // set font size using the default font
+
+        // set font size using the default font as reference
         textArea.setFont(textArea.getFont().deriveFont(FONT_SIZE));
-        // set a small border to push the text away from the sides
-        //textArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 10));
-        textArea.setBorder(BorderFactory.createEmptyBorder(20, 10, 20, 10));
+        // This border will act as a small margin that will increase readability of what is written in the editor
+        textArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         // set tab size for text field
         textArea.setTabSize(TAB_SIZE);
         // add text field to our scroll pane
         JScrollPane textField = new JScrollPane(textArea);
+
+        addFontSizePanel(c);
 
         // Set button constraints
         c.fill = GridBagConstraints.BOTH;
@@ -66,35 +76,71 @@ public class EditorFrame extends JFrame {
 
         // Add Open button
         c.gridx = 0;
-        panel.add(openButton, c);
+        mainPanel.add(openButton, c);
 
         // Add Save button
         c.gridx = 1;
-        panel.add(saveButton, c);
-
+        mainPanel.add(saveButton, c);
+/*
         // Add Print button
         c.gridx = 2;
         panel.add(printButton, c);
-
-        /*// Test - add combo box
-        c.fill = 0;
-        c.gridx = 3;
-        panel.add(fontComboBox, c);*/
+*/
 
         // for our text field we will add it below the other two
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 1;
+        // Gridwidth needs to be larger than the number of elements in the x direction to fill the space.
         c.gridwidth = 5;
         c.weighty = 1;
-        panel.add(textField, c);
+        mainPanel.add(textField, c);
     }
 
-    private void setupButtons(){
+    private  void addFontSizePanel(GridBagConstraints c){
+        // This combo box will act as a way to select our text size.
+        // I'm going to attempt to put all the various text manipulation items into one panel
+        // Then add the panel in afterwards
+
+        // I want it in the last position in our overall panel
+        c.gridx = 3;
+
+        // Create the panel that all of our smaller components will nest into
+        JPanel textSize = new JPanel(new GridBagLayout());
+
+        // Init all the values that our min and max allow
+        for(float i = MIN_TEXT_SIZE; i <= MAX_TEXT_SIZE; i+=TEXT_INCREMENT){
+            textSizeBox.addItem(i);
+
+            // This will set our default font size
+            if(i == FONT_SIZE){
+                textSizeBox.setSelectedIndex((int)((FONT_SIZE-MIN_TEXT_SIZE)/TEXT_INCREMENT));
+            }
+        }
+
+        // create new constraints for our smaller grid bag
+        GridBagConstraints tConstraints = new GridBagConstraints();
+
+        // create our text field that will remind the user what these values are for
+        JTextPane textSizeText = new JTextPane();
+        textSizeText.setText("Text Size");
+
+        // add the text box to the top
+        tConstraints.gridx = 0;
+        tConstraints.fill = GridBagConstraints.BOTH;
+        textSize.add(textSizeText, tConstraints);
+
+        // add the drop box and resize button
+        tConstraints.gridy = 1;
+        tConstraints.gridx = 0;
+        textSize.add(textSizeBox,tConstraints);
+        mainPanel.add(textSize, c);
+    }
+
+    private void setupListeners(){
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("Save.");
                 save();
             }
         });
@@ -112,6 +158,17 @@ public class EditorFrame extends JFrame {
                 print();
             }
         });
+
+        // trying out the new lambda notation
+        textSizeBox.addActionListener(e -> resize());
+    }
+
+    // WORKS
+    private void resize(){
+        float newFontSize = textSizeBox.getItemAt(textSizeBox.getSelectedIndex());
+        textArea.setFont(textArea.getFont().deriveFont(newFontSize));
+        textArea.repaint();
+        System.out.println(newFontSize);
     }
 
     // WORKS
@@ -136,9 +193,10 @@ public class EditorFrame extends JFrame {
         }
     }
 
-    // WORKS
+    // WORKS - currently without extension filters
     private void open(){
         JFileChooser chooser = new JFileChooser();
+        //chooser.addChoosableFileFilter(new FileNameExtensionFilter("txt"));
         int returnVal = chooser.showOpenDialog(this);
 
         if(returnVal == JFileChooser.APPROVE_OPTION){
@@ -155,7 +213,7 @@ public class EditorFrame extends JFrame {
                 }
                 scanner.close();
             } catch (IOException e){
-                // we know this file exists because we just made it
+                // we know this file exists because chooser said so
             }
         } else {
             System.out.println("Open cancelled by user.");
